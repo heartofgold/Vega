@@ -23,10 +23,10 @@ namespace Vega.Controllers
         }
         
         [HttpGet("/api/features")]
-        public IEnumerable<FeatureViewModel> GetFeatures()
+        public async Task<IActionResult> GetFeatures()
         {
-            var features = _context.Features.ToList();
-            return _mapper.Map<IList<Feature>, IList<FeatureViewModel>>(features);
+            var features = await _context.Features.ToListAsync();
+            return Ok(_mapper.Map<IList<Feature>, IList<FeatureViewModel>>(features));
         } 
     }
 }

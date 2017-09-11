@@ -23,10 +23,10 @@ namespace Vega.Controllers
         }
 
         [HttpGet("/api/makes")]
-        public IEnumerable<MakeViewModel> GetMakes()
+        public async Task<IActionResult> GetMakes()
         {
-            var makes = _context.Makes.Include(m => m.Models).ToList();
-            return _mapper.Map<IList<Make>, IList<MakeViewModel>>(makes);
+            var makes = await _context.Makes.Include(m => m.Models).ToListAsync();
+            return Ok(_mapper.Map<IList<Make>, IList<MakeViewModel>>(makes));
         }
     }
 }
