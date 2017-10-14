@@ -1,11 +1,17 @@
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Vega.Models
 {
     // Represents a vehicle manufacturer.
     public class Make
     {
+        public Make()
+        {
+            Models = new Collection<Model>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
